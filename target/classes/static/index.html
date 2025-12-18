@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess-o-Movie – Retro Edition</title>
+
+    <!-- Retro Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #1c1b18;
+            color: #f2e8c9;
+            font-family: 'Special Elite', monospace;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Moving Film Strip Background */
+        .film-strip {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300%;
+            height: 100%;
+            background: url('https://i.imgur.com/HzbP1oF.png') repeat-x;
+            opacity: 0.12;
+            animation: reelMove 25s linear infinite;
+        }
+
+        @keyframes reelMove {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* Dust + Scratches Overlay */
+        .grain {
+            position: absolute;
+            inset: 0;
+            background: url('https://i.imgur.com/NJb7vVZ.png');
+            opacity: 0.15;
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        /* Flicker effect */
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.92; }
+            80% { opacity: 0.97; }
+        }
+
+        h1 {
+            font-size: 60px;
+            z-index: 5;
+            letter-spacing: 3px;
+            text-shadow: 0 0 8px #c2a878;
+            animation: flicker 3s infinite;
+        }
+
+        button {
+            z-index: 5;
+            margin-top: 30px;
+            padding: 14px 40px;
+            font-size: 22px;
+            border: 2px solid #c2a878;
+            background: rgba(40, 37, 32, 0.8);
+            color: #f2e8c9;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: rgba(200, 170, 120, 0.3);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="film-strip"></div>
+    <div class="grain"></div>
+
+    <h1>Guess-o-Movie 🎥</h1>
+
+    <button onclick="startGame()">Start Game</button>
+
+    <script>
+        async function startGame() {
+            try {
+                const response = await fetch("http://localhost:8080/start");
+                const movie = await response.json();
+
+                alert("🎬 Your movie: " + movie.name);
+            } catch (error) {
+                alert("Backend not running! Start your Spring Boot backend first.");
+            }
+        }
+    </script>
+
+</body>
+</html>
