@@ -43,9 +43,8 @@ async function loadMovie() {
         return;
     }
 
-    const res = await fetch("fetch("fetch("http://localhost:8080/start")
-")
-");
+    // ✅ FIXED FETCH (this was the main error)
+    const res = await fetch("http://localhost:8080/start");
     movie = await res.json();
 
     hintIndex = 0;
@@ -64,6 +63,7 @@ async function loadMovie() {
 
     updateScore();
 }
+
 
 /* ========= UPDATE SCORE ========= */
 function updateScore() {
