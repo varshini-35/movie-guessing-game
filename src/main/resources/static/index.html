@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guess-o-Movie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- Result Popup -->
+<div id="popupOverlay" class="popup-overlay hidden">
+    <div class="popup-box">
+        <h2 id="popupTitle"></h2>
+        <p id="popupMessage"></p>
+        <button onclick="closePopup()">Continue ▶</button>
+    </div>
+</div>
+
+
+<body>
+
+<!-- INTRO SCREEN -->
+<div id="intro">
+    <div class="reel reel-top"></div>
+    <div class="reel reel-bottom"></div>
+    <h1 class="title">Guess-o-Movie 🎬</h1>
+</div>
+
+<!-- START SCREEN -->
+<div id="start" hidden>
+    <h2>Ready to Play?</h2>
+    <input id="playerName" placeholder="Enter your name" />
+    <button onclick="startGame()">Start Game</button>
+</div>
+
+<!-- GAME SCREEN -->
+<div id="game" hidden>
+    <div class="overlay"></div>
+
+    <div class="game-box">
+        <div id="info"></div>
+
+        <input id="guess" placeholder="Type movie name…" />
+
+        <div class="btn-row">
+            <button onclick="check()">Submit</button>
+            <button onclick="showHint()">Hint 💡</button>
+            <button onclick="nextMovie()">Next ⏭️</button>
+        </div>
+
+        <div id="hintBox"></div>
+        <div id="score"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
